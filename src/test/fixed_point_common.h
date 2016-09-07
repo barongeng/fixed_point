@@ -172,18 +172,6 @@ static_assert(is_same<decltype(uint8(0)+uint8(0)), test_int>::value, "incorrect 
 // sg14::_impl
 
 ////////////////////////////////////////////////////////////////////////////////
-// sg14::_impl::next_size
-
-static_assert(is_same<_impl::next_size<int8>, int16>::value, "sg14::_impl::next_size text failed");
-static_assert(is_same<_impl::next_size<uint32>, uint64>::value, "sg14::_impl::next_size text failed");
-
-////////////////////////////////////////////////////////////////////////////////
-// sg14::_impl::previous_size
-
-static_assert(is_same<_impl::previous_size<int64>, int32>::value, "sg14::_impl::previous_size text failed");
-static_assert(is_same<_impl::previous_size<uint16>, uint8>::value, "sg14::_impl::previous_size text failed");
-
-////////////////////////////////////////////////////////////////////////////////
 // sg14::_impl::shift_left/right positive RHS
 
 #if defined(_MSC_VER)
@@ -255,19 +243,6 @@ static_assert(_impl::pow2<float, -3>()==.125, "sg14::_impl::pow2 test failed");
 static_assert(_impl::pow2<double, 7>()==128, "sg14::_impl::pow2 test failed");
 static_assert(_impl::pow2<long double, 10>()==1024, "sg14::_impl::pow2 test failed");
 static_assert(_impl::pow2<float, 20>()==1048576, "sg14::_impl::pow2 test failed");
-
-////////////////////////////////////////////////////////////////////////////////
-// sg14::_impl::capacity
-
-static_assert(_impl::capacity<0>::value==0, "sg14::_impl::capacity test failed");
-static_assert(_impl::capacity<1>::value==1, "sg14::_impl::capacity test failed");
-static_assert(_impl::capacity<2>::value==2, "sg14::_impl::capacity test failed");
-static_assert(_impl::capacity<3>::value==2, "sg14::_impl::capacity test failed");
-static_assert(_impl::capacity<4>::value==3, "sg14::_impl::capacity test failed");
-static_assert(_impl::capacity<7>::value==3, "sg14::_impl::capacity test failed");
-static_assert(_impl::capacity<8>::value==4, "sg14::_impl::capacity test failed");
-static_assert(_impl::capacity<15>::value==4, "sg14::_impl::capacity test failed");
-static_assert(_impl::capacity<16>::value==5, "sg14::_impl::capacity test failed");
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
