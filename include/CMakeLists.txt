@@ -12,5 +12,15 @@ add_library(
 	include/sg14/auxiliary/integer.h
 	include/sg14/auxiliary/multiprecision.h
 )
-set_target_properties(fixed_point PROPERTIES LINKER_LANGUAGE CXX)
-include_directories(SYSTEM ${CMAKE_CURRENT_LIST_DIR})
+
+set_target_properties(
+	fixed_point
+	PROPERTIES
+	LINKER_LANGUAGE CXX
+)
+
+include_directories(
+	fixed_point
+	PUBLIC
+	${CMAKE_CURRENT_LIST_DIR}
+)

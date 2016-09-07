@@ -34,6 +34,17 @@ ExternalProject_Get_Property(google_test source_dir)
 ExternalProject_Get_Property(google_test binary_dir)
 
 ######################################################################
+# add external project, safe_numerics
+
+ExternalProject_Add(
+        safe_numerics
+        GIT_REPOSITORY "https://github.com/johnmcfarlane/safe_numerics.git"
+        GIT_TAG "fixed_point"
+        INSTALL_COMMAND ""
+)
+ExternalProject_Get_Property(safe_numerics SOURCE_DIR)
+
+######################################################################
 # fp_test target
 
 add_executable(fp_test
@@ -74,12 +85,18 @@ target_include_directories(
         PRIVATE
         SYSTEM
         ${source_dir}/include
+        ${SOURCE_DIR}/include
 )
 
 ######################################################################
 # hitch google_test to fp_test
 
-add_dependencies(fp_test google_test)
+add_dependencies(
+        fp_test
+        fixed_point
+        google_test
+        safe_numerics
+)
 
 if (${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
     target_link_libraries(

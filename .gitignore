@@ -1,19 +1,19 @@
 # cmake
-build
 CMakeCache.txt
 CMakeFiles
-Makefile
 cmake_install.cmake
 google_benchmark-prefix/
 google_test-prefix/
 fp_benchmark
 fp_test
+Makefile
+safe_numerics-prefix
 
 # doxygen
-doc/html
+/doc/html
 
 # perf
 perf.data*
 
 # Clion
-.idea
+/.idea

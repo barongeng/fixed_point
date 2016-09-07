@@ -71,6 +71,12 @@ is provided, containing all the necessary definitions.
 
 \snippet index.cpp boost example
 
+Another supported library is 
+[safe_numerics](https://github.com/robertramey/safe_numerics).
+It defines a type which catches overflow.
+
+\snippet index.cpp safe numerics example
+
 
 \subsection elastic Extensible
 

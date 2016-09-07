@@ -118,6 +118,49 @@ void boost_example()
 #endif
 
 
+#if defined(SG14_EXCEPTIONS_ENABLED)
+////////////////////////////////////////////////////////////////////////////////
+//! [safe integer example]
+#include <sg14/auxiliary/safe_integer.h>
+
+#include <gtest/gtest.h>
+void safe_integer_example()
+{
+    auto s = boost::numeric::safe<int8_t>{0};
+    auto f = static_cast<float>(s);
+    cout << f << endl;
+    using safe_int8 = boost::numeric::safe<int8_t>;
+    safe_int8 x = -128;
+    ASSERT_EQ(static_cast<int>(x), -128);
+
+    float xf = x;
+    ASSERT_EQ(xf, -128);
+
+    // a type with range -1<=x<1
+    using signed_unit_byte = fixed_point<boost::numeric::safe<int8_t>, -7>;
+
+    // prints "-1"
+    try {
+        auto minus_one = signed_unit_byte{-1};
+        cout << minus_one << endl;
+    }
+    catch (std::overflow_error e) {
+        cout << e.what();
+    }
+
+    // prints "Value out of range for this safe type"
+    try {
+        auto plus_one = signed_unit_byte{1};
+        cout << plus_one << endl;
+    }
+    catch (std::overflow_error e) {
+        cout << e.what();
+    }
+}
+//! [safe integer example]
+#endif
+
+
 ////////////////////////////////////////////////////////////////////////////////
 //! [elastic example]
 #include <sg14/auxiliary/elastic_integer.h>
@@ -185,6 +228,10 @@ TEST(index, examples)
 
 #if defined(SG14_BOOST_ENABLED)
     test_function(boost_example, "1e+100\n1e-100\n");
+#endif
+
+#if defined(SG14_EXCEPTIONS_ENABLED)
+    test_function(safe_integer_example, "-1\nValue out of range for this safe type\n");
 #endif
 
     test_function(elastic_example1, "");
